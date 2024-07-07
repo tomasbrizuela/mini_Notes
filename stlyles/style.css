@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+body {
+  background-color: black;
+  height: 100%;
+}
+
+#noteArea {
+  position: fixed;
+  top: 25%;
+  right: 34%;
+  width: 450px;
+  border: 1px solid #828282;
+  border-radius: 10px;
+  border: 3px solid rgb(46, 46, 46);
+  transition: 0.1s ease;
+}
+
+textarea {
+  text-align: justify;
+  border: 0px;
+  color: #828282;
+  font-size: 13px;
+  background-color: black;
+  border-radius: 10px;
+  min-height: 50px;
+  max-height: 250px;
+  width: 100%;
+  line-height: 30px;
+  outline: none;
+  font-family: poppins;
+  resize: none;
+  field-sizing: content;
+}
+
+textarea::selection {
+  background-color: #828282;
+  color: black;
+}
+
+textarea::placeholder {
+  color: #474747;
+}
+
+#noteArea > #buttons > #actions > i {
+  color: #828282;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+p {
+  color: #828282;
+  font-size: 11px;
+}
+
+#menu {
+  color: #c4c4c4;
+  z-index: 100;
+  border: 1px solid rgb(46, 46, 46);
+}
+
+i:hover {
+  transform: scale(1.05);
+  text-shadow: 1px 1px 10px rgb(183, 183, 183);
+}
+
+i:active {
+  transform: scale(0.95);
+}
+
+#noteHistoryContainer {
+  display: none;
+  border-radius: 10px;
+  padding: 10px;
+  border: 2px solid rgb(46, 46, 46);
+  z-index: 100;
+}
+
+#noteHistoryContainer > div {
+  border-radius: 7px;
+  min-width: 220px;
+  border: 1px solid rgb(46, 46, 46);
+}
+
+#noteHistoryContainer > div:hover {
+  background-color: #2f2f2f;
+  transition: 0.3s ease;
+}
+
+.overlay {
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(2px);
+  top: 0;
+  right: 0;
+}
+
+textArea {
+  height: auto;
+  overflow: visible;
+  scrollbar-color: rgb(103, 102, 102) rgb(0, 0, 0);
+  scrollbar-width: thin;
+}
+
+.button {
+  cursor: pointer;
+}
+
+.trasher {
+  color: #828282;
+  font-size: 11px;
+}
+
+/*# sourceMappingURL=style.css.map */
