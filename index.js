@@ -10,16 +10,17 @@ let trash = document.querySelector('#trash');
 let buttonX = document.querySelectorAll('.buttonX');
 let search = document.querySelector('input');
 
-let noteHistory = JSON.parse(localStorage.getItem('noteHistory1')) || []
+let noteHistory = JSON.parse(localStorage.getItem('noteHistory1')) || [];
+let textLastSession = localStorage.getItem('noteLastSession1') || "";
 console.log(noteHistory)
-
 
 document.addEventListener('DOMContentLoaded', function () {
     let date = getDate();
     dateText.textContent = date;
     updateNotesHistory(noteHistory)
+    textArea.value = textLastSession;
+    localStorage.removeItem('currentId');
     textArea.focus()
-
 })
 
 let getDate = () => {
@@ -37,15 +38,21 @@ let getDate = () => {
 }
 
 let UpdateNotesDatabase = () => {
-    let idNumber = Math.round((Math.random()) * 100000000)
-    noteHistory.push({
-        id: idNumber,
-        text: textArea.value,
-        date: dateText.textContent
-    })
+    let idNumber = 0;
+    if(localStorage.getItem('currentId')){
+        idNumber = parseInt(getId())
+    } else {
+        idNumber = Math.round((Math.random()) * 100000000);
+        noteHistory.push({
+            id: idNumber,
+            text: textArea.value,
+            date: dateText.textContent
+        })
+    }
+    
     localStorage.setItem('noteHistory1', JSON.stringify(noteHistory))
-    console.log(noteHistory)
     textArea.value = "";
+    localStorage.removeItem('currentId');
     textArea.focus();
 }
 
@@ -53,6 +60,9 @@ let updateNotesHistory = (array) => {
     noteHistoryList.innerHTML ="";
 
     array.forEach((note) => {
+        // if(note.id === JSON.parse(localStorage.getItem("currentNote"))[0].id){
+        //     console.log("Hola");
+        // }
         let div = document.createElement('div');
         let p = document.createElement('p');
         let trasher = document.createElement('i');
@@ -67,16 +77,17 @@ let updateNotesHistory = (array) => {
         p.addEventListener('click', function () {
             textArea.value = note.text;
             dateText.textContent = note.date;
-            hideShow(overlay, noteHistoryContainer)
+            hideShow(overlay, noteHistoryContainer);
+            localStorage.setItem('currentNote', JSON.stringify(note))
+            itemHolder(note.id)
             textArea.focus()
-            console.log(note.text)
         })
 
         trasher.addEventListener('click', function(){
-            console.log(noteHistory)
-            let newArray = noteHistory.filter((item) => (item.id != note.id))
+            console.log(noteHistory);
+            let newArray = noteHistory.filter((item) => (item.id != note.id));
             noteHistory = newArray;
-            updateNotesHistory(noteHistory)
+            updateNotesHistory(noteHistory);
             localStorage.setItem('noteHistory1', JSON.stringify(noteHistory));
         })
 
@@ -90,7 +101,9 @@ saveButton.addEventListener('click', function () {
     if(textArea.value != ""){
         UpdateNotesDatabase();
         updateNotesHistory(noteHistory);
+        localStorage.setItem('noteLastSession1',"");
         let date = getDate();
+        shadowSaveButton();
         dateText.textContent = date;
     } else {
         noteDiv.style.transform = "scale(1.05)"
@@ -113,6 +126,8 @@ overlay.addEventListener('click', function () {
 
 trash.addEventListener('click', function(){
     textArea.value = "";
+    localStorage.removeItem('currentId');
+
 })
 
 let hideShow = (x, y) => {
@@ -134,8 +149,6 @@ let searching = (x) => {
     noteHistoryList.innerHTML = "";
 
     let searchResult = noteHistory.filter((note) => note.text.toLowerCase().includes(x))
-    console.log(searchResult)
-
     updateNotesHistory(searchResult)
 }
 
@@ -144,3 +157,32 @@ search.addEventListener('input', function(){
     console.log(searchText)
     searching(searchText)
 })
+
+textArea.addEventListener('input', function(){
+    console.log(textArea.value)
+    localStorage.setItem('noteLastSession1', textArea.value);
+})
+
+let shadowSaveButton = () => {
+    menu.style.textShadow = "2px 2px 15px #FFFFFF";
+    menu.style.transform = "scale(1.3)";
+    setTimeout(() => {
+        menu.style.textShadow = "0px 0px 0px #000000";
+        menu.style.transform = "scale(1)";
+
+    },500)
+}
+
+let itemHolder = (id) => {
+    localStorage.setItem('currentId', id);
+}
+
+let getId = () => {
+    let id = parseInt(localStorage.getItem('currentId'));
+        noteHistory.map((note)=>{
+            if(note.id === id){
+                note.text = textArea.value;
+            }
+        })
+        return(id)
+    }

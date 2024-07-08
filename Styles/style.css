@@ -9,7 +9,7 @@ body {
   top: 25%;
   right: 34%;
   width: 450px;
-  border: 1px solid #828282;
+  border: 1px solid #969696;
   border-radius: 10px;
   border: 3px solid rgb(46, 46, 46);
   transition: 0.1s ease;
@@ -18,7 +18,7 @@ body {
 textarea {
   text-align: justify;
   border: 0px;
-  color: #828282;
+  color: #bababa;
   font-size: 13px;
   background-color: black;
   border-radius: 10px;
@@ -33,7 +33,7 @@ textarea {
 }
 
 textarea::selection {
-  background-color: #828282;
+  background-color: #969696;
   color: black;
 }
 
@@ -42,13 +42,13 @@ textarea::placeholder {
 }
 
 #noteArea > #buttons > #actions > i {
-  color: #828282;
+  color: #969696;
   cursor: pointer;
   font-size: 15px;
 }
 
 p {
-  color: #828282;
+  color: #969696;
   font-size: 11px;
 }
 
@@ -56,6 +56,7 @@ p {
   color: #c4c4c4;
   z-index: 100;
   border: 1px solid rgb(46, 46, 46);
+  transition: 0.3s ease;
 }
 
 i:hover {
@@ -105,7 +106,7 @@ i:active {
 textArea {
   height: auto;
   overflow: visible;
-  scrollbar-color: rgb(103, 102, 102) rgb(0, 0, 0);
+  scrollbar-color: #676666 #000000;
   scrollbar-width: thin;
 }
 
@@ -115,13 +116,13 @@ textArea {
 }
 
 .trasher {
-  color: #828282;
+  color: #969696;
   font-size: 11px;
 }
 
 input {
   background-color: black;
-  color: #828282;
+  color: #969696;
   height: 30px;
   font-size: 12px;
   font-family: poppins;
