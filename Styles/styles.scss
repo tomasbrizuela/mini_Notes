@@ -147,3 +147,12 @@ input::placeholder{
     display: none;
 }
 
+#changeTheme > i{
+    font-size: 18px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    color: $color2;
+    border: 1px solid rgb(46, 46, 46);
+    border-radius: 5px;
+}

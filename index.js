@@ -9,6 +9,8 @@ let overlay = document.querySelector('.overlay');
 let trash = document.querySelector('#trash');
 let buttonX = document.querySelectorAll('.buttonX');
 let search = document.querySelector('input');
+let sun = document.querySelector('#buttonSun');
+let moon = document.querySelector('#buttonMoon');
 
 let noteHistory = JSON.parse(localStorage.getItem('noteHistory1')) || [];
 let textLastSession = localStorage.getItem('noteLastSession1') || "";
@@ -186,3 +188,21 @@ let getId = () => {
         })
         return(id)
     }
+
+sun.addEventListener('click', function(){
+    moon.classList.toggle('hidden');
+    sun.classList.toggle('hidden');
+    document.body.style.backgroundColor = "white";
+    textArea.style.backgroundColor = "white";
+    textArea.style.color = "black";
+    search.style.backgroundColor = "white";
+})
+
+moon.addEventListener('click', function(){
+    moon.classList.toggle('hidden');
+    sun.classList.toggle('hidden');
+    document.body.style.backgroundColor = "black";
+    textArea.style.backgroundColor = "black";
+    textArea.style.color = "black";
+    search.style.backgroundColor = "black";
+})
