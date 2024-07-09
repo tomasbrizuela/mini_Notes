@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
     updateNotesHistory(noteHistory)
     textArea.value = textLastSession;
     localStorage.removeItem('currentId');
-    textArea.focus()
+    foc();
 })
 
 let getDate = () => {
@@ -55,7 +55,7 @@ let UpdateNotesDatabase = () => {
     localStorage.setItem('noteHistory1', JSON.stringify(noteHistory))
     textArea.value = "";
     localStorage.removeItem('currentId');
-    textArea.focus();
+    foc()
 }
 
 let updateNotesHistory = (array) => {
@@ -71,7 +71,7 @@ let updateNotesHistory = (array) => {
 
         trasher.className = "fa-solid fa-trash p-2 trasher"
         p.className = "p-2 m-0 button"
-        p.textContent = note.text.slice(0, 32)
+        p.textContent = note.text.slice(0, 30)
         div.className = "ps-3 pe-3 mb-3 d-flex flex-row justify-content-between align-items-center divNote"
 
         div.id = note.id;
@@ -83,7 +83,7 @@ let updateNotesHistory = (array) => {
             localStorage.setItem('currentNote', JSON.stringify(note))
             itemHolder(note.id)
             search.value = "";
-            textArea.focus()
+            foc()
         })
 
         trasher.addEventListener('click', function(){
@@ -124,13 +124,13 @@ menu.addEventListener('click', function () {
 
 overlay.addEventListener('click', function () {
     hideShow(overlay, noteHistoryContainer);
-    textArea.focus()
+    foc()
 })
 
 trash.addEventListener('click', function(){
     textArea.value = "";
     localStorage.removeItem('currentId');
-    textArea.focus();
+    foc()
 })
 
 let hideShow = (x, y) => {
@@ -197,6 +197,7 @@ sun.addEventListener('click', function(){
     textArea.style.backgroundColor = "white";
     textArea.style.color = "black";
     search.style.backgroundColor = "white";
+    foc()
 })
 
 moon.addEventListener('click', function(){
@@ -204,6 +205,11 @@ moon.addEventListener('click', function(){
     sun.classList.toggle('hidden');
     document.body.style.backgroundColor = "black";
     textArea.style.backgroundColor = "black";
-    textArea.style.color = "black";
+    textArea.style.color = "white";
     search.style.backgroundColor = "black";
+    foc()
 })
+
+let foc = () => {
+    textArea.focus()
+}
