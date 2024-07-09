@@ -69,10 +69,10 @@ let updateNotesHistory = (array) => {
         let p = document.createElement('p');
         let trasher = document.createElement('i');
 
-        trasher.className = "fa-solid fa-trash p-0 trasher"
-        p.className = "p-0 m-0 button"
+        trasher.className = "fa-solid fa-trash p-2 trasher"
+        p.className = "p-2 m-0 button"
         p.textContent = note.text.slice(0, 32)
-        div.className = "ps-3 pe-3 p-2 mb-3 d-flex flex-row justify-content-between align-items-center divNote"
+        div.className = "ps-3 pe-3 mb-3 d-flex flex-row justify-content-between align-items-center divNote"
 
         div.id = note.id;
 
@@ -82,6 +82,7 @@ let updateNotesHistory = (array) => {
             hideShow(overlay, noteHistoryContainer);
             localStorage.setItem('currentNote', JSON.stringify(note))
             itemHolder(note.id)
+            search.value = "";
             textArea.focus()
         })
 
@@ -129,7 +130,7 @@ overlay.addEventListener('click', function () {
 trash.addEventListener('click', function(){
     textArea.value = "";
     localStorage.removeItem('currentId');
-
+    textArea.focus();
 })
 
 let hideShow = (x, y) => {

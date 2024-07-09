@@ -118,6 +118,7 @@ textArea {
 .trasher {
   color: #969696;
   font-size: 11px;
+  cursor: pointer;
 }
 
 input {
