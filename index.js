@@ -11,6 +11,7 @@ let buttonX = document.querySelectorAll('.buttonX');
 let search = document.querySelector('input');
 let sun = document.querySelector('#buttonSun');
 let moon = document.querySelector('#buttonMoon');
+let mode = "dark";
 
 let noteHistory = JSON.parse(localStorage.getItem('noteHistory1')) || [];
 let textLastSession = localStorage.getItem('noteLastSession1') || "";
@@ -70,7 +71,7 @@ let updateNotesHistory = (array) => {
         let trasher = document.createElement('i');
 
         trasher.className = "fa-solid fa-trash p-2 trasher"
-        p.className = "p-2 m-0 button"
+        p.className = "p-2 m-0 button textBox"
         p.textContent = note.text.slice(0, 30)
         div.className = "ps-3 pe-3 mb-3 d-flex flex-row justify-content-between align-items-center divNote"
 
@@ -145,6 +146,12 @@ document.addEventListener('keydown', function(e){
         textArea.value = "";
     } if (e.shiftKey && e.ctrlKey){
         menu.click()
+    } if(e.ctrlKey && e.code === "Space") {
+        if(mode === "ligth"){
+            moon.click()
+        } else {
+            sun.click()
+        }
     }
 })
 
@@ -197,7 +204,13 @@ sun.addEventListener('click', function(){
     textArea.style.backgroundColor = "white";
     textArea.style.color = "black";
     search.style.backgroundColor = "white";
+    let textBox = document.querySelectorAll('.textBox');
+    textBox.forEach(text => {
+        text.classList.toggle('button');
+        text.classList.toggle('buttonTheme');
+    })
     foc()
+    mode = "ligth";
 })
 
 moon.addEventListener('click', function(){
@@ -207,7 +220,13 @@ moon.addEventListener('click', function(){
     textArea.style.backgroundColor = "black";
     textArea.style.color = "white";
     search.style.backgroundColor = "black";
+    let textBox = document.querySelectorAll('.textBox');
+    textBox.forEach(text => {
+        text.classList.toggle('button');
+        text.classList.toggle('buttonTheme');
+    })
     foc()
+    mode = "dark"
 })
 
 let foc = () => {

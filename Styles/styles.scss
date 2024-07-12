@@ -121,6 +121,16 @@ textArea{
     width: 100%;
 }
 
+.buttonTheme{
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    width: 100%;
+}
+
+.buttonTheme:hover{
+    color: white;
+}
+
 .trasher{
         color: $color2;
         font-size: 11px;
