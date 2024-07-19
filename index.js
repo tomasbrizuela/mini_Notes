@@ -116,6 +116,7 @@ saveButton.addEventListener('click', function () {
         let date = getDate();
         shadowSaveButton();
         dateText.textContent = date;
+        escapeKey()
     } else {
         noteDiv.style.transform = "scale(1.05)"
         setTimeout(() => {
@@ -255,14 +256,7 @@ document.addEventListener('keydown', function (e) {
             noteDiv.style.right = "22%";
             focusMode = !focusMode;
     } if (e.key === "Escape" && focusMode == false) {
-        sun.classList.toggle('dontShow');
-        menu.classList.toggle('dontShow');
-        moon.classList.toggle('dontShow');
-        noteDiv.style.width = "450px"
-        noteDiv.style.height = "";
-        textArea.style.minHeight = "50px";
-        noteDiv.style.right = "34%"
-        focusMode = !focusMode;
+        escapeKey();
     }
 })
 
@@ -272,3 +266,14 @@ textArea.addEventListener('input', function(){
 
     count.textContent = "Carácteres: " + number;
 })
+
+let escapeKey = () => {
+    sun.classList.toggle('dontShow');
+    menu.classList.toggle('dontShow');
+    moon.classList.toggle('dontShow');
+    noteDiv.style.width = "450px"
+    noteDiv.style.height = "";
+    textArea.style.minHeight = "50px";
+    noteDiv.style.right = "34%"
+    focusMode = !focusMode;
+}
