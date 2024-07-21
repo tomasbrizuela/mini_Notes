@@ -66,10 +66,10 @@ let UpdateNotesDatabase = () => {
     foc()
 }
 
-let updateNotesHistory = (array) => {
+let updateNotesHistory = async (array) => {
     noteHistoryList.innerHTML = "";
 
-    array.forEach((note) => {
+    array.forEach(async (note) => {
         // if(note.id === JSON.parse(localStorage.getItem("currentNote"))[0].id){
         //     console.log("Hola");
         // }
@@ -79,7 +79,8 @@ let updateNotesHistory = (array) => {
 
         trasher.className = "fa-solid fa-trash p-2 trasher"
         p.className = "p-2 m-0 button textBox"
-        p.textContent = note.text.slice(0, 30)
+        // p.textContent = note.text.slice(0, 30)
+        p.textContent = await getTitle(note.text);
         div.className = "ps-3 pe-3 mb-3 d-flex flex-row justify-content-between align-items-center divNote"
 
         div.id = note.id;
@@ -267,13 +268,9 @@ textArea.addEventListener('input', function(){
     count.textContent = "Carácteres: " + number;
 })
 
-let escapeKey = () => {
-    sun.classList.toggle('dontShow');
-    menu.classList.toggle('dontShow');
-    moon.classList.toggle('dontShow');
-    noteDiv.style.width = "450px"
-    noteDiv.style.height = "";
-    textArea.style.minHeight = "50px";
-    noteDiv.style.right = "34%"
-    focusMode = !focusMode;
+let getTitle = async (x) => {
+    let response = await fetch(`http://localhost:7788/data/${x}`);
+    let data = await response.json();
+
+    return data
 }
