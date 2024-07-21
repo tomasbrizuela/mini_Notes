@@ -66,10 +66,10 @@ let UpdateNotesDatabase = () => {
     foc()
 }
 
-let updateNotesHistory = async (array) => {
+let updateNotesHistory =  (array) => {
     noteHistoryList.innerHTML = "";
 
-    array.forEach(async (note) => {
+    array.forEach( (note) => {
         // if(note.id === JSON.parse(localStorage.getItem("currentNote"))[0].id){
         //     console.log("Hola");
         // }
@@ -79,8 +79,8 @@ let updateNotesHistory = async (array) => {
 
         trasher.className = "fa-solid fa-trash p-2 trasher"
         p.className = "p-2 m-0 button textBox"
-        // p.textContent = note.text.slice(0, 30)
-        p.textContent = await getTitle(note.text);
+        p.textContent = note.text.slice(0, 30)
+        // p.textContent = await getTitle(note.text);
         div.className = "ps-3 pe-3 mb-3 d-flex flex-row justify-content-between align-items-center divNote"
 
         div.id = note.id;
